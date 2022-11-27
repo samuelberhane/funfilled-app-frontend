@@ -1,0 +1,8 @@
+// action types
+const GET_POSTS = "GET_POSTS";
+const CREATE_POST = "CREATE_POST";
+const SET_ID = "SET_ID";
+const UPDATE_POST = "UPDATE_POST";
+const REMOVE_POST = "REMOVE_POST";
+
+export { GET_POSTS, CREATE_POST, SET_ID, UPDATE_POST, REMOVE_POST };

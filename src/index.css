@@ -1,0 +1,317 @@
+:root {
+  --nav-color: #faecce;
+  --base-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  --main-color: #117c80;
+  --form-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  --save-btn: #14a384;
+  --clear-btn: #d61345;
+  --btn-container: #17180a;
+  --like-btn: #2b7cd8;
+  --edit-btn: #3de73d;
+  --base-radius: 15px;
+  --body-color: rgb(245, 253, 218);
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--body-color);
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  border: 10px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/******************************************** navbar styles ********************************************/
+
+.header {
+  padding: 0.6rem 0;
+  background-color: var(--nav-color);
+}
+
+.nav-logo {
+  color: var(--main-color);
+  font-size: 2.4rem;
+}
+
+.logo-img {
+  height: 80px;
+  width: 120px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0;
+  box-shadow: var(--base-shadow);
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+/*********************** media query ***********************/
+
+/* small screen */
+@media (max-width: 767px) {
+  .nav-logo {
+    font-size: 1.5rem;
+  }
+
+  .logo-img {
+    display: none;
+  }
+}
+/* small screen */
+
+/* media query */
+
+/********************************************* navbar styles end*********************************************/
+
+/********************************************* homepage style(form and posts) *********************************************/
+.home {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: 1.1fr 3fr;
+  gap: 1.4rem;
+}
+
+/************************ home media query ************************/
+
+/***** medium screen *****/
+@media (max-width: 991px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+}
+/***** medium screen *****/
+
+/***** small screen *****/
+@media (max-width: 767px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding: 0 0.2rem;
+  }
+}
+/***** small screen *****/
+
+/************************ home media query end ************************/
+
+/***************************************** create form styles *****************************************/
+.create-form {
+  box-shadow: var(--form-shadow);
+  padding: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 520px;
+}
+
+.form-title {
+  text-align: center;
+  color: var(--main-color);
+  margin-bottom: 0.8rem;
+}
+
+.form-group {
+  padding: 0.4rem 0.2rem;
+  font-size: 1.1rem;
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: column;
+  margin: 0.6rem 0;
+}
+
+input {
+  padding: 0.3rem 0.5rem;
+}
+
+.save {
+  display: block;
+  background-color: var(--save-btn);
+  width: 100%;
+  margin: 0.6rem 0;
+}
+
+.clear {
+  background-color: var(--clear-btn);
+  width: 100%;
+}
+
+/************************ create form media query  ************************/
+
+/***** medium screen *****/
+@media (max-width: 991px) {
+  .create-form {
+    padding: 1rem;
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+/***** medium screen *****/
+
+/***** small screen *****/
+@media (max-width: 767px) {
+  .create-form {
+    width: 90%;
+    padding: 0.6rem;
+    margin: 0 auo;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+}
+/***** small screen *****/
+
+/************************ create form media query end ************************/
+
+/***************************************** create form styles end *****************************************/
+
+/****************************************** posts styles *****************************************/
+.post-img {
+  width: 100%;
+  height: 190px;
+  border-radius: var(--base-radius) var(--base-radius) 0 0;
+}
+
+.posts {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+.post-head {
+  position: relative;
+}
+
+.post-desc {
+  padding: 0.1rem 0.5rem;
+  height: 150px;
+}
+
+.post-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-head .creator {
+  position: absolute;
+  top: 1.2rem;
+  left: 0.6rem;
+  color: #fff;
+  font-size: 1.3rem;
+  border-right: 10px solid rgb(122, 120, 4);
+  background-color: rgba(22, 22, 12, 0.5);
+  padding: 0.1rem 0.3rem;
+}
+
+.post {
+  width: 290px;
+  border-radius: var(--base-radius) var(--base-radius) 0 0;
+  box-shadow: var(--base-shadow);
+  background-color: #fff;
+}
+
+.btn {
+  font-size: 14px;
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+}
+
+.btn-container {
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--btn-container);
+}
+
+.time {
+  color: grey;
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  font-weight: bold;
+  flex-wrap: wrap;
+  margin-top: 0.1rem 0;
+
+  font-size: 14px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.1rem 0;
+  text-align: center;
+}
+
+.message {
+  margin: 0.3rem 0;
+  text-align: center;
+}
+
+.like {
+  background-color: var(--like-btn);
+}
+.edit {
+  background-color: var(--edit-btn);
+}
+
+.delete {
+  background-color: var(--clear-btn);
+  margin-left: 10px;
+}
+
+/************************ posts media query ************************/
+
+/***** medium screen *****/
+@media (max-width: 991px) {
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(2, 290px);
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+/***** medium screen *****/
+
+/***** small screen *****/
+@media (max-width: 767px) {
+  .posts {
+    display: flex;
+    justify-content: center;
+  }
+}
+/***** small screen *****/
+
+/************************ posts media query end ************************/
+
+/****************************************** posts styles end*****************************************/
+/********************************************* homepage style(form and posts) end *********************************************/
