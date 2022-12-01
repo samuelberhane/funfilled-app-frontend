@@ -1,15 +1,15 @@
 :root {
-  --nav-color: #faecce;
+  --nav-color: #463d29;
   --base-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-  --main-color: #117c80;
+  --main-color: #118999;
   --form-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   --save-btn: #14a384;
   --clear-btn: #d61345;
-  --btn-container: #17180a;
+  --btn-container: #edf1b4;
   --like-btn: #2b7cd8;
   --edit-btn: #3de73d;
   --base-radius: 15px;
-  --body-color: rgb(245, 253, 218);
+  --body-color: rgb(225, 235, 247);
 }
 
 *,
@@ -31,6 +31,11 @@ button {
   border: 10px;
   font-size: 1rem;
   color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }
 
 .container {
@@ -60,13 +65,38 @@ button {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.4rem 0;
+  justify-content: space-between;
   box-shadow: var(--base-shadow);
   background-color: #fff;
   border-radius: 15px;
+  padding: 0.5rem 1rem;
 }
 
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--main-color);
+}
+
+.logout {
+  background-color: var(--clear-btn);
+  border-radius: 5px;
+}
+
+.logos {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.signup {
+  background-color: var(--like-btn);
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
 /*********************** media query ***********************/
 
 /* small screen */
@@ -122,9 +152,9 @@ button {
 /***************************************** create form styles *****************************************/
 .create-form {
   box-shadow: var(--form-shadow);
-  padding: 1.2rem;
+  padding: 1.5rem;
   background-color: rgba(255, 255, 255, 0.9);
-  height: 520px;
+  height: 430px;
 }
 
 .form-title {
@@ -134,16 +164,18 @@ button {
 }
 
 .form-group {
-  padding: 0.4rem 0.2rem;
-  font-size: 1.1rem;
+  padding: 0.3rem 0.2rem;
+  font-size: 1rem;
   display: flex;
   gap: 0.2rem;
   flex-direction: column;
-  margin: 0.6rem 0;
+  margin-top: 0.2rem;
+  position: relative;
 }
 
 input {
   padding: 0.3rem 0.5rem;
+  outline: none;
 }
 
 .save {
@@ -175,7 +207,7 @@ input {
   .create-form {
     width: 90%;
     padding: 0.6rem;
-    margin: 0 auo;
+    margin: 0 auto;
   }
 
   .form-title {
@@ -237,12 +269,20 @@ input {
 }
 
 .btn {
-  font-size: 14px;
-  padding: 0.4rem 0.7rem;
-  border-radius: 5px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.right-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-container {
+  height: 25px;
   padding: 0.4rem;
   display: flex;
   align-items: center;
@@ -261,13 +301,12 @@ input {
   font-weight: bold;
   flex-wrap: wrap;
   margin-top: 0.1rem 0;
-
   font-size: 14px;
 }
 
 .title {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   margin: 0.1rem 0;
   text-align: center;
 }
@@ -277,15 +316,26 @@ input {
   text-align: center;
 }
 
+.btn {
+  font-size: 14px;
+}
+
 .like {
-  background-color: var(--like-btn);
+  color: var(--like-btn);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.like p {
+  color: rgb(72, 141, 170);
 }
 .edit {
-  background-color: var(--edit-btn);
+  color: var(--edit-btn);
 }
 
 .delete {
-  background-color: var(--clear-btn);
+  color: var(--clear-btn);
   margin-left: 10px;
 }
 
@@ -315,3 +365,72 @@ input {
 
 /****************************************** posts styles end*****************************************/
 /********************************************* homepage style(form and posts) end *********************************************/
+
+/********************************************* user form styles *********************************************/
+.user-form {
+  width: 350px;
+  margin: 0.6rem auto;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: var(--base-shadow);
+}
+
+.user-form h3 {
+  color: var(--main-color);
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.signup-btn {
+  background-color: var(--save-btn);
+  width: 100%;
+  margin-bottom: 0.3rem;
+}
+
+.change {
+  cursor: pointer;
+  text-align: center;
+  color: var(--like-btn);
+}
+
+.user-logo {
+  color: var(--main-color);
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.error-msg {
+  text-align: center;
+  color: var(--clear-btn);
+  margin-top: 5px;
+}
+
+.fa-eye {
+  position: absolute;
+  top: 34px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.visible {
+  color: gray;
+}
+
+.error {
+  border: 1px solid var(--clear-btn);
+}
+
+/************************ user media query ************************/
+
+/***** small screen *****/
+@media (max-width: 500px) {
+  .user-form {
+    width: 95%;
+    margin: 1 auto;
+  }
+}
+/***** small screen *****/
+
+/************************ user media query end ************************/
+
+/********************************************* user form styles end *********************************************/

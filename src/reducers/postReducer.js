@@ -4,6 +4,7 @@ import {
   SET_ID,
   UPDATE_POST,
   REMOVE_POST,
+  REMOVE_ID,
 } from "../variables/actionType";
 
 // posts reducer function
@@ -16,6 +17,8 @@ export const postReducer = (state, action) => {
       return { ...state, posts: [payload, ...state.posts] };
     case SET_ID:
       return { ...state, currentId: payload };
+    case REMOVE_ID:
+      return { ...state, currentId: null };
     case UPDATE_POST:
       const updatedPosts = state.posts.map((post) => {
         if (post._id === payload._id) {

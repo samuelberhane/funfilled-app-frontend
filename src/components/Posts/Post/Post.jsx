@@ -1,12 +1,14 @@
 import React from "react";
 import { useGlobalPostContext } from "../../../hook/globalPostContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useGlobalUserContext } from "../../../hook/globalUserContext";
 
 const demoImgUrl =
   "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg?auto=compress&cs=tinysrgb&w=1600";
 
 const Post = ({ post }) => {
   const { dispatch } = useGlobalPostContext();
+  const { dispatch: userDispatch, user } = useGlobalUserContext();
   const {
     _id,
     selectedImage,
@@ -16,7 +18,21 @@ const Post = ({ post }) => {
     tags,
     likes,
     createdAt,
+    userId,
   } = post;
+
+  const Likes = () => {
+    if (likes.length === 0) return <p>0</p>;
+    if (likes.length === 1 && likes.includes(user.user._id)) return <p>You</p>;
+    if (likes.length === 1 && !likes.includes(user.user._id)) return <p>1</p>;
+    if (likes.length === 2 && likes.includes(user.user._id))
+      return <p>You and 1 other</p>;
+    if (likes.length > 2 && likes.includes(user.user._id))
+      return <p>You and {likes.length - 1} others</p>;
+    if (likes.length >= 2 && !likes.includes(user.user._id))
+      return <p>{likes.length}</p>;
+  };
+
   // dispatch update action
   const handleUpdate = () => {
     dispatch({ type: "SET_ID", payload: _id });
@@ -24,8 +40,13 @@ const Post = ({ post }) => {
 
   // dispatch delete action
   const handleRemove = async () => {
+    setTimeout(() => {
+      userDispatch({ type: "REMOVE_TEXT" });
+    }, 3000);
+
     const response = await fetch(`/posts/${_id}`, {
       method: "DELETE",
+      headers: { authorization: `Bearer ${user.token}` },
     });
 
     if (response.ok) {
@@ -39,8 +60,8 @@ const Post = ({ post }) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${user.token}`,
       },
-      body: JSON.stringify({ likes: likes + 1 }),
     });
 
     const json = await response.json();
@@ -68,18 +89,23 @@ const Post = ({ post }) => {
       </div>
       <div className="btn-container">
         <div className="left-btn">
-          <button className="btn like" onClick={handleLike}>
-            Likes: {likes}
-          </button>
+          {user && (
+            <button className="btn like" onClick={handleLike}>
+              <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+              <Likes />
+            </button>
+          )}
         </div>
-        <div className="right-btn">
-          <button className="btn edit" onClick={handleUpdate}>
-            Edit
-          </button>
-          <button className="btn delete" onClick={handleRemove}>
-            Delete
-          </button>
-        </div>
+        {user?.user?._id === userId && (
+          <div className="right-btn">
+            <button className="btn edit" onClick={handleUpdate}>
+              Edit
+            </button>
+            <button className="btn delete" onClick={handleRemove}>
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

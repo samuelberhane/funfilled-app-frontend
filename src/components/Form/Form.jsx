@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import FileBase from "react-file-base64";
 import { useGlobalPostContext } from "../../hook/globalPostContext";
+import { useGlobalUserContext } from "../../hook/globalUserContext";
 
 const Form = () => {
   const { dispatch, currentId, posts } = useGlobalPostContext();
+  const { dispatch: userDispatch, user, errorText } = useGlobalUserContext();
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -25,15 +27,29 @@ const Form = () => {
   // create or update post
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { creator, title, message, tags, selectedImage } = postData;
+
+    if (!user) {
+      userDispatch({ type: "LOGGED_OUT", payload: "Please Signup First!" });
+      dispatch({ type: "REMOVE_ID" });
+      clear();
+    }
+
+    setTimeout(() => {
+      userDispatch({ type: "REMOVE_TEXT" });
+    }, 3000);
+    const { title, message, tags, selectedImage } = postData;
     const imageFile = selectedImage.base64;
     const tagsArray = tags.split(",");
+    const fullname = `${user.user.firstname} ${user.user.lastname}`;
 
     const response = await fetch(currentId ? `/posts/${currentId}` : "/posts", {
       method: currentId ? "PUT" : "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${user.token}`,
+      },
       body: JSON.stringify({
-        creator,
+        creator: fullname,
         title,
         message,
         tags: tagsArray,
@@ -78,22 +94,9 @@ const Form = () => {
 
   return (
     <form className="create-form" autoComplete="off" onSubmit={handleSubmit}>
-      <h2 className="form-title">
-        {currentId ? "Update" : "Create"} Your Fun Moment
-      </h2>
-      {/* creator */}
-      <div className="form-group">
-        <label htmlFor="creator">Creator: </label>
-        <input
-          type="text"
-          id="creator"
-          placeholder="Creator"
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        />
-      </div>
+      <h3 className="form-title">
+        {currentId ? "Update" : "Create"} Your Fun Moment{" "}
+      </h3>
       {/* title */}
       <div className="form-group">
         <label htmlFor="title">Title: </label>
@@ -145,6 +148,7 @@ const Form = () => {
       <button className="clear" onClick={clear} type="button">
         Clear
       </button>
+      {errorText && <div className="error-msg">{errorText}</div>}
     </form>
   );
 };
