@@ -101,6 +101,7 @@ const Form = () => {
       <div className="form-group">
         <label htmlFor="title">Title: </label>
         <input
+          required
           type="text"
           id="title"
           placeholder="Title"
@@ -112,6 +113,7 @@ const Form = () => {
       <div className="form-group">
         <label htmlFor="message">Message: </label>
         <input
+          required
           type="text"
           id="message"
           placeholder="Message"
@@ -125,6 +127,7 @@ const Form = () => {
       <div className="form-group">
         <label htmlFor="tags">Tags: </label>
         <input
+          required
           type="text"
           id="tags"
           placeholder="Tags"
