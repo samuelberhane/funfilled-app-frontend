@@ -70,42 +70,44 @@ const Post = ({ post }) => {
     }
   };
   return (
-    <div className="post">
-      <div className="post-head">
-        <img src={selectedImage || demoImgUrl} alt="" className="post-img" />
-        <h3 className="creator">{creator}</h3>
-      </div>
-      <div className="post-desc">
-        <p className="time">
-          {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
-        </p>
-        <div className="tags">
-          {tags && tags.map((tag, index) => <p key={index}>{`#${tag}`}</p>)}
+    <div className="post-container">
+      <div className="post">
+        <div className="post-head">
+          <img src={selectedImage || demoImgUrl} alt="" className="post-img" />
+          <h3 className="creator">{creator}</h3>
         </div>
-        <div className="post-text">
-          <p className="title">{title}</p>
-          <p className="message">{message}</p>
+        <div className="post-desc">
+          <p className="time">
+            {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
+          </p>
+          <div className="tags">
+            {tags && tags.map((tag, index) => <p key={index}>{`#${tag}`}</p>)}
+          </div>
+          <div className="post-text">
+            <p className="title">{title}</p>
+            <p className="message">{message}</p>
+          </div>
         </div>
-      </div>
-      <div className="btn-container">
-        <div className="left-btn">
-          {user && (
-            <button className="btn like" onClick={handleLike}>
-              <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-              <Likes />
-            </button>
+        <div className="btn-container">
+          <div className="left-btn">
+            {user && (
+              <button className="btn like" onClick={handleLike}>
+                <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+                <Likes />
+              </button>
+            )}
+          </div>
+          {user?.user?._id === userId && (
+            <div className="right-btn">
+              <button className="btn edit" onClick={handleUpdate}>
+                Edit
+              </button>
+              <button className="btn delete" onClick={handleRemove}>
+                Delete
+              </button>
+            </div>
           )}
         </div>
-        {user?.user?._id === userId && (
-          <div className="right-btn">
-            <button className="btn edit" onClick={handleUpdate}>
-              Edit
-            </button>
-            <button className="btn delete" onClick={handleRemove}>
-              Delete
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

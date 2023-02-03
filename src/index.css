@@ -217,11 +217,9 @@ input {
 }
 
 .posts {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  justify-content: flex-start;
   margin-bottom: 2rem;
 }
 
@@ -238,6 +236,10 @@ input {
   display: flex;
   flex-direction: column;
 }
+.post-container {
+  display: flex;
+  justify-content: center;
+}
 
 .post-head .creator {
   position: absolute;
@@ -251,7 +253,7 @@ input {
 }
 
 .post {
-  width: 290px;
+  width: 270px;
   border-radius: var(--base-radius) var(--base-radius) 0 0;
   box-shadow: var(--base-shadow);
   background-color: #fff;
@@ -331,21 +333,17 @@ input {
 /************************ posts media query ************************/
 
 /***** medium screen *****/
-@media (max-width: 991px) {
+@media (max-width: 1150px) {
   .posts {
-    display: grid;
-    grid-template-columns: repeat(2, 290px);
-    justify-content: center;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 /***** medium screen *****/
 
 /***** small screen *****/
-@media (max-width: 767px) {
+@media (max-width: 600px) {
   .posts {
-    display: flex;
-    justify-content: center;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 /***** small screen *****/

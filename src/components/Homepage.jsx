@@ -9,7 +9,6 @@ const Homepage = () => {
         <div className="form-container">
           <Form />
         </div>
-
         <Posts />
       </section>
     </div>
