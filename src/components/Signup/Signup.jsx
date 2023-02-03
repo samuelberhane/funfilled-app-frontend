@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useGlobalUserContext } from "../../hook/globalUserContext";
 import { useNavigate } from "react-router-dom";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const Signup = () => {
   const { dispatch } = useGlobalUserContext();
@@ -9,10 +10,8 @@ const Signup = () => {
   const [error, setError] = useState(null);
   const [signup, setSignup] = useState(true);
   const [emptyFields, setEmptyFields] = useState(null);
-  const [visible, setVisible] = useState({
-    passwordVisible: false,
-    repeatPasswordVisible: false,
-  });
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
   const [userData, setUserData] = useState({
     firstname: "",
     lastname: "",
@@ -54,10 +53,6 @@ const Signup = () => {
 
   const handleChange = () => {
     setSignup(!signup);
-  };
-
-  const changeVisibility = (e) => {
-    setVisible({ ...visible, [e.target.id]: !visible?.[e.target.id] });
   };
 
   return (
@@ -111,22 +106,19 @@ const Signup = () => {
           className={`${
             emptyFields?.includes("password") ? "error password" : "password"
           }`}
-          type={`${visible.passwordVisible ? "text" : "password"}`}
+          type={`${passwordVisible ? "text" : "password"}`}
           id="password"
           value={userData.password}
           onChange={(e) =>
             setUserData({ ...userData, password: e.target.value })
           }
         />
-        <i
-          className={`${
-            visible.passwordVisible ? "fa fa-eye visible" : "fa fa-eye"
-          }`}
-          aria-hidden="true"
-          id="passwordVisible"
-          name="value"
-          onClick={changeVisibility}
-        ></i>
+        <div
+          onClick={() => setPasswordVisible((prev) => !prev)}
+          className="password-icon"
+        >
+          {passwordVisible ? <MdVisibilityOff /> : <MdVisibility />}
+        </div>
       </div>
       {signup && (
         <div className="form-group">
@@ -137,21 +129,19 @@ const Signup = () => {
                 ? "error password"
                 : "password"
             }`}
-            type={`${visible.repeatPasswordVisible ? "text" : "password"}`}
+            type={`${repeatPasswordVisible ? "text" : "password"}`}
             id="repeatPassword"
             value={userData.repeatPassword}
             onChange={(e) =>
               setUserData({ ...userData, repeatPassword: e.target.value })
             }
           />
-          <i
-            className={`${
-              visible.repeatPasswordVisible ? "fa fa-eye visible" : "fa fa-eye"
-            }`}
-            aria-hidden="true"
-            id="repeatPasswordVisible"
-            onClick={changeVisibility}
-          ></i>
+          <div
+            onClick={() => setRepeatPasswordVisible((prev) => !prev)}
+            className="password-icon"
+          >
+            {repeatPasswordVisible ? <MdVisibilityOff /> : <MdVisibility />}
+          </div>
         </div>
       )}
       <button type="submit" className="signup-btn">

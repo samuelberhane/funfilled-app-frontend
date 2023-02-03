@@ -372,7 +372,13 @@ input {
   margin: 0.6rem auto;
   background-color: #fff;
   padding: 1rem 2rem;
+  border-radius: 20px;
   box-shadow: var(--base-shadow);
+}
+
+.showpassword {
+  color: rebeccapurple;
+  background-color: #118999;
 }
 
 .user-form h3 {
@@ -385,8 +391,12 @@ input {
   background-color: var(--save-btn);
   width: 100%;
   margin-bottom: 0.3rem;
+  border-radius: 10px;
 }
 
+.signup-btn:hover {
+  background-color: rgb(15, 144, 15);
+}
 .change {
   cursor: pointer;
   text-align: center;
@@ -405,11 +415,12 @@ input {
   margin-top: 5px;
 }
 
-.fa-eye {
+.password-icon {
   position: absolute;
   top: 34px;
   right: 10px;
   cursor: pointer;
+  color: rgb(74, 63, 63);
 }
 
 .visible {
