@@ -39,8 +39,7 @@ a {
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /******************************************** navbar styles ********************************************/
@@ -121,6 +120,8 @@ a {
   display: grid;
   grid-template-columns: 1.1fr 3fr;
   gap: 1.4rem;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /************************ home media query ************************/
@@ -150,11 +151,19 @@ a {
 /************************ home media query end ************************/
 
 /***************************************** create form styles *****************************************/
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
 .create-form {
   box-shadow: var(--form-shadow);
   padding: 1.5rem;
   background-color: rgba(255, 255, 255, 0.9);
   height: 430px;
+  border-radius: 20px;
+  width: 320px;
 }
 
 .form-title {
@@ -183,42 +192,22 @@ input {
   background-color: var(--save-btn);
   width: 100%;
   margin: 0.6rem 0;
+  border-radius: 20px;
+}
+
+.save:hover {
+  background-color: rgb(15, 144, 15);
 }
 
 .clear {
   background-color: var(--clear-btn);
   width: 100%;
+  border-radius: 20px;
 }
 
-/************************ create form media query  ************************/
-
-/***** medium screen *****/
-@media (max-width: 991px) {
-  .create-form {
-    padding: 1rem;
-    width: 60%;
-    margin: 0 auto;
-  }
+.clear:hover {
+  background-color: rgb(229, 63, 93);
 }
-/***** medium screen *****/
-
-/***** small screen *****/
-@media (max-width: 767px) {
-  .create-form {
-    width: 90%;
-    padding: 0.6rem;
-    margin: 0 auto;
-  }
-
-  .form-title {
-    font-size: 1.5rem;
-  }
-}
-/***** small screen *****/
-
-/************************ create form media query end ************************/
-
-/***************************************** create form styles end *****************************************/
 
 /****************************************** posts styles *****************************************/
 .post-img {

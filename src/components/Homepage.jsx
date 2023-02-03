@@ -6,7 +6,10 @@ const Homepage = () => {
   return (
     <div className="container">
       <section className="home">
-        <Form />
+        <div className="form-container">
+          <Form />
+        </div>
+
         <Posts />
       </section>
     </div>
