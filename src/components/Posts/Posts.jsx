@@ -2,7 +2,6 @@ import React from "react";
 import Post from "./Post/Post";
 import { useGlobalPostContext } from "../../hook/globalPostContext";
 import { useEffect } from "react";
-import { CircularProgress } from "@mui/material";
 
 const Posts = () => {
   const { dispatch, posts } = useGlobalPostContext();
@@ -22,8 +21,8 @@ const Posts = () => {
     fetchPosts();
   }, [dispatch]);
 
-  // return circular loading
-  if (!posts) return <CircularProgress />;
+  // return while loading
+  if (!posts) return;
 
   return (
     <>
