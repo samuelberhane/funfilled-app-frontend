@@ -10,9 +10,12 @@ const Posts = () => {
   // fetch all posts and dispatch get posts action
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/posts", {
-        method: "GET",
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/posts`,
+        {
+          method: "GET",
+        }
+      );
       const json = await response.json();
       dispatch({ type: "GET_POSTS", payload: json });
     };

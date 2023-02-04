@@ -25,19 +25,24 @@ const Signup = () => {
     setError(null);
     const { firstname, lastname, email, password, repeatPassword } = userData;
 
-    const response = await fetch(signup ? "/user/signup" : "/user/login", {
-      method: "POST",
-      body: signup
-        ? JSON.stringify({
-            firstname,
-            lastname,
-            email,
-            password,
-            repeatPassword,
-          })
-        : JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      signup
+        ? `${process.env.REACT_APP_BACKEND_URL}/user/signup`
+        : `${process.env.REACT_APP_BACKEND_URL}/user/login`,
+      {
+        method: "POST",
+        body: signup
+          ? JSON.stringify({
+              firstname,
+              lastname,
+              email,
+              password,
+              repeatPassword,
+            })
+          : JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     const json = await response.json();
     if (!response.ok) {
       setError(json.error);

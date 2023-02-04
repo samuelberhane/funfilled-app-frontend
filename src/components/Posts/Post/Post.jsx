@@ -44,10 +44,13 @@ const Post = ({ post }) => {
       userDispatch({ type: "REMOVE_TEXT" });
     }, 3000);
 
-    const response = await fetch(`/posts/${_id}`, {
-      method: "DELETE",
-      headers: { authorization: `Bearer ${user.token}` },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/${_id}`,
+      {
+        method: "DELETE",
+        headers: { authorization: `Bearer ${user.token}` },
+      }
+    );
 
     if (response.ok) {
       dispatch({ type: "REMOVE_POST", payload: _id });
@@ -56,13 +59,16 @@ const Post = ({ post }) => {
 
   // dispatch like post action
   const handleLike = async () => {
-    const response = await fetch(`/posts/like/${_id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/like/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     const json = await response.json();
     if (response.ok) {

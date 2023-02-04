@@ -42,20 +42,25 @@ const Form = () => {
     const tagsArray = tags.split(",");
     const fullname = `${user.user.firstname} ${user.user.lastname}`;
 
-    const response = await fetch(currentId ? `/posts/${currentId}` : "/posts", {
-      method: currentId ? "PUT" : "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify({
-        creator: fullname,
-        title,
-        message,
-        tags: tagsArray,
-        selectedImage: imageFile,
-      }),
-    });
+    const response = await fetch(
+      currentId
+        ? `${process.env.REACT_APP_BACKEND_URL}/posts/${currentId}`
+        : `${process.env.REACT_APP_BACKEND_URL}/posts`,
+      {
+        method: currentId ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          creator: fullname,
+          title,
+          message,
+          tags: tagsArray,
+          selectedImage: imageFile,
+        }),
+      }
+    );
     const json = await response.json();
 
     if (response.ok) {
